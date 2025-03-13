@@ -22,13 +22,28 @@ garder un historique clair et dans le cas où il est prévu de prochainnement fu
 
 ## 1. Quels sont les avantages et les risques d'utiliser git rebase par rapport à git merge dans un contexte collaboratif ? Expliquez les situations où l'un serait préféré à l'autre et comment minimiser les risques liés à un rebase mal utilisé.
 
+Le **git rebase** nous permet d'organiser l'historique des commits après coup, en les appliquant par dessus une branche cible, ce qui donne un historique plus propre et plus linéaire. Cela peut être avantageux lorsqu'on veut garder un historique sans commit de fusion pour ne pas trop alourdir l'historique, ce qui rend le rend plus facile à lire et à suivre. On voit que les commit semblent directement réalisés sur la branche principale.
+
+En revanche, **git merge** conserve tous les commits et crée un commit de fusion, ce qui est évidemment utile pour préserver la chronologie exacte des événements, notamment dans un travail collaboratif où chaque développeur a travaillé sur des fonctionnalités non-connexes. 
+
+Le principal risque du rebase en contexte collaboratif est qu'il réécrit l'historique, ce qui peut entraîner des conflits si plusieurs personnes ont travaillé sur les mêmes commits ou branches. Afin de réduire ce risque, il est recommandé d'éviter d'utiliser le rebase sur des branches partagées et de l'appliquer plutôt sur des branches locales avant de pousser les modifications. 
+
+En résumé, le **git merge** est préférable pour maintenir un historique collaboratif sécurisé, tandis que le **git rebase** permet d’avoir un historique plus net lorsqu'on travaille seul ou sur des branches privées.
+
 
 ## 2. Quel est l'intérêt d'utiliser les tags ? Expliquez en lien avec les requirements et la Semantic versioning method.
 
 
+On utilise les **tags** sont utilisés pour marquer des étapes importantes dans l'historique d'un projet. En général, ils sont là pour signaler une version stable ou une release, c'est a dire une version prête à être utilisée. Ils nous permettent de pouvoir retrouver rapidement des versions spécifiques sans devoir éplucher tous les anciens commits un à un. L'intérêt des tags réside donc dans leur capacité à fournir un suivi clair de l'évolution du projet, tout en permettant de revenir aisément à des versions antérieures en cas de besoin.
+
+Concernant le lien avec la Semantic versionin method, les tags respectent la convention de versionnement sous le format **MAJOR.MINOR.PATCH**. Cela permet de bien gérer les versions en indiquant explicitement si une version apporte respectivement des modifications majeures, des ajouts ou des corrections de bugs. Par exemple, une mise à jour de **1.0.0** à **2.0.0** indique un changement majeur, donc possiblement incompatible avec les versions précédentes, tandis qu'une mise à jour de **1.0.0** à **1.1.0** indique l'ajout de nouvelles fonctionnalités sans rupture de compatibilité. Enfin une mise à jour de **1.0.0** à **1.0.1** signifiera la correction de bug ponctuels ne mettant également absolument pas en péril toute compatibilité. 
+
+
 ## 3. Décrivez l'impact d'une mauvaise configuration du fichier .gitignore sur l'historique du projet. Quelles conséquences peut-on observer et comment rectifier la situation une fois le problème identifié ?
 
+Une configuration defectueuse du fichier **.gitignore** peut exercer une influence significative sur le fil d'historique du projet. En effet, elle peut conduire à l'ajout de fichiers ou de dossiers indésirables dans le suivi, comme des fichiers temporaires, des logs ou des fichiers de configuration liés à l'environnement local. Cela alourdit l'historique des commits, complique sa lecture et peut même causer des conflits lors des merges. Par exemple, si un fichier volumineux comme un fichier de log est suivi par mégarde, il rendra assurément le projet plus lourd et provoquera des erreurs lors des push vers le dépôt distant.
 
+Pour pallier à ce problème, il est tout d'abord naturellement nécessaire de commencer par ajouter les fichiers ou dossiers concernés dans le fichier **.gitignore**, afin de s'assurer qu'ils ne soient suivis à l'avenir. Ensuite, on peut utiliser la commande **git rm --cached <fichier>** pour supprimer ces fichiers de l'index Git tout en les conservant localement. Enfin, il faut effectuer un commit pour enregistrer cette modification dans l'historique et pousser les changements sur le dépôt distant afin de régler totalement le problème.
 
 
 
