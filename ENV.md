@@ -28,11 +28,11 @@ Dans un environnement local, vous pouvez charger ces variables en installant `py
 Un fichier `.env.example` est fourni pour vous aider à configurer rapidement votre environnement :
 
 ```bash
-cp .env.example .env
+test.env.example
 ```
 
 ### Notes et recommandations
-- **Ne commitez jamais votre fichier `.env` dans Git: ** Ajoutez-le à `.gitignore` 
+- **Ne jamais commit votre fichier `.env` dans Git:** Ajoutez-le plutot à `.gitignore` 
 - Utilisez des gestionnaires de secrets comme AWS Secrets Manager.
 
 
