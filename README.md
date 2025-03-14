@@ -22,11 +22,10 @@ Comme dit dans le nom, cette version est une beta et regroupe toutes ces fonctio
 
 ## Version v1.1.0
 
-Dans la prochaine version, nous avons apporté le changement suivant :
+Dans la prochaine version, nous avons apporté le changement suivant :  
 
-A COMPLETER
-  
-Les détails de cette mise à jour seront disponibles lors de la création du tag `v1.1.0`.
+**Renforcement de la sécurité** avec l'ajout de nouvelles règles dans le fichier `.gitignore` pour éviter l'inclusion de fichiers sensibles.  
+
 
 ---
 
