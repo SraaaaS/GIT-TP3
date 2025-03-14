@@ -6,3 +6,5 @@ Thumbs.db
 *.log
 *.tmp 
 build/
+secrets.json
+*.env
